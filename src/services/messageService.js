@@ -1,18 +1,7 @@
 import * as tokenService from '../services/tokenService'
-const BASE_URL = `${process.env.REACT_APP_API_URL}/api/messages/`
-
-// export const getAll = async () => {
-//   console.log("get all msgs service");
-//   try {
-//     const res = await fetch(`${BASE_URL}`)
-//     return await res.json()
-//   } catch (error) {
-//     throw error
-//   }
-// }
+const BASE_URL = `${process.env.REACT_APP_API_URL}/api/messages`
 
 export const getAll = async () => {
-  console.log("get all msgs service");
   try {
     const res = await fetch(BASE_URL, {
       method: "GET",
@@ -28,9 +17,15 @@ export const getAll = async () => {
 }
 
 export const getOne = async (id) => {
-  console.log("get one msg service");
+  console.log("get one msg service")
   try {
-    const res = await fetch(`${BASE_URL}${id}`)
+    const res = await fetch(`${BASE_URL}${id}`, {
+      method: "GET",
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      },
+    })
     return await res.json()
   } catch (error) {
     throw error
@@ -54,4 +49,3 @@ export const create = async (message) => {
     throw error
   }
 }
-

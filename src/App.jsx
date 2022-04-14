@@ -28,9 +28,9 @@ const App = () => {
   const [messages, setMessages] = useState([])
 
   // * logs
-  console.log("user is", user)
-  console.log("profiles are", profiles);
-  console.log("messages are", messages);
+  // console.log("user is", user)
+  // console.log("profiles are", profiles);
+  // console.log( "app.jsx", messages.length ? messages : "no msgs yet");
 
   // useEffects
   useEffect(() => {
@@ -44,11 +44,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await messageService.getAll()
-      console.log("data 1", data);
-      console.log("get all msgs use effect");
       setMessages(data)
-      console.log("set msgs to msg data");
-      console.log("data 2", data);
     }
     fetchData()
   }, [])
@@ -99,7 +95,7 @@ const App = () => {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-              <Profiles />
+              <Profiles messages={messages} />
             </ProtectedRoute>}
         />
         <Route
@@ -118,7 +114,7 @@ const App = () => {
           }
         />
         <Route
-          path="/messages"
+          path="/messages/:id"
           element={
             <ProtectedRoute user={user}>
               <SendMessage addMessage={addMessage} />
