@@ -23,9 +23,6 @@ const ProfileDetails = (props) => {
       <li>{profileDetails.profile?.sun_sign}</li>
       <li>{profileDetails.profile?.moon_sign}</li>
       <li>{profileDetails.profile?.rising_sign}</li>
-      {/* {profileDetails.profile?.smoke ? <li>Yes</li> : <li>No</li>}
-      {profileDetails.profile?.drink ? <li>Yes</li> : <li>No</li>}
-      {profileDetails.profile?.four_twenty ? <li>Yes</li> : <li>No</li>} */}
     </ul>
     <p>
     {profileDetails.profile?.bio}

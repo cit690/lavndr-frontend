@@ -11,11 +11,11 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 import UpdateProfile from './pages/UpdateProfile/UpdateProfile'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
 import * as profileService from './services/profileService'
-import * as profileService from './services/authService'
 import * as messageService from './services/messageService'
 
 
@@ -33,6 +33,7 @@ const App = () => {
 
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
+    navigate('/profiles/:id')
   }
 
   useEffect(() => {
@@ -58,6 +59,11 @@ const App = () => {
     setMessages([...message, message])
   }
 
+  const deleteProfile = async (id) => {
+    await profileService.deleteOne(id)
+    setProfiles(profiles.filter(profile => profile.id !== parseInt(id)))
+  }
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -77,11 +83,18 @@ const App = () => {
         />
         <Route
           path="/profiles/:id"
-          element={user ? <ProfileDetails /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute user={user}>
+            <ProfileDetails /> 
+            </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id/edit"
-          element={user ? <UpdateProfile updateProfile={updateProfile} /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute user={user}>
+            <UpdateProfile updateProfile={updateProfile} /> 
+            </ProtectedRoute>
+            }
         />
       </Routes>
     </>
