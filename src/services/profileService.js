@@ -38,7 +38,7 @@ export const update = async (profile) => {
 
 export const deleteOne = async (id) => {
   try {
-    const res = await fetch(`${BASE_URL}${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
       headers: { 'Authorization': `Bearer ${tokenService.getToken()}` }
     })
