@@ -18,14 +18,14 @@ const ProfileDetails = (props) => {
     <h2>{profileDetails.profile?.name}</h2>
     <ul>
       <li>{profileDetails.profile?.location}</li>
-      <li>{profileDetails.profile?.gender_identity} </li>
-      <li>{profileDetails.profile?.orientation} </li>
-      <li>{profileDetails.profile?.sun_sign} </li>
-      <li>{profileDetails.profile?.moon_sign} </li>
-      <li>{profileDetails.profile?.rising_sun} </li>
-      <li>{profileDetails.profile?.smoke ? <li>Yes</li> : <li>No</li>} </li>
-      <li>{profileDetails.profile?.drink ? <li>Yes</li> : <li>No</li>} </li>
-      <li>{profileDetails.profile?.four_twenty ? <li>Yes</li> : <li>No</li>} </li>
+      <li>{profileDetails.profile?.gender_identity}</li>
+      <li>{profileDetails.profile?.orientation}</li>
+      <li>{profileDetails.profile?.sun_sign}</li>
+      <li>{profileDetails.profile?.moon_sign}</li>
+      <li>{profileDetails.profile?.rising_sign}</li>
+      {/* {profileDetails.profile?.smoke ? <li>Yes</li> : <li>No</li>}
+      {profileDetails.profile?.drink ? <li>Yes</li> : <li>No</li>}
+      {profileDetails.profile?.four_twenty ? <li>Yes</li> : <li>No</li>} */}
     </ul>
     <p>
     {profileDetails.profile?.bio}

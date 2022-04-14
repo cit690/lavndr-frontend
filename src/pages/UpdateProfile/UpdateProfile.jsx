@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getOne } from '../../services/profileService'
-import { update } from '../../services/profileService'
+// import { update } from '../../services/profileService'
 
 const UpdateProfile = (props) => {
   const { id } = useParams()
@@ -18,30 +18,35 @@ const UpdateProfile = (props) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
+
   useEffect(() => {
     const fetchOne = async () => {
+      
       const data = await getOne(id)
       setForm({
         id: data.profile.id,
         name: data.profile.name,
         dob: data.profile.dob,
         location: data.profile.location,
-        genderIdentity: data.profile.gender_identity,
+        gender_identity: data.profile.gender_identity,
         orientation: data.profile.orientation,
         vibeCheck: data.profile.vibe_check,
-        sunSign: data.profile.vibe_check,
-        moonSign: data.profile.vibe_check,
-        risingSign: data.profile.vibe_check,
-        smoke: false,
-        drink: false,
-        fourTwenty: false,
-        isSober: false,
+        sun_sign: data.profile.sun_sign,
+        moon_sign: data.profile.moon_sign,
+        rising_sign: data.profile.rising_sign,
+        // smoke: data.profile.smoke,
+        // drink: data.profile.drink,
+        // fourTwenty: data.profile.four_twenty,
+        // isSober: false,
         bio: data.profile.bio
       })
+    console.log(data.profile)
+
     }
     id && fetchOne()
     return () => setForm({})
   }, [id])
+  console.log(form)
 
 
   return ( <>
@@ -54,9 +59,9 @@ const UpdateProfile = (props) => {
         value={id.profile?.name}
         onChange={handleChange}
         id="name"
-        required name="name"
+        name="name"
         type="text"
-        placeholder={id.profile?.name}
+        placeholder=""
         autoComplete="off"
         />
         {/* <br />
@@ -86,8 +91,8 @@ const UpdateProfile = (props) => {
         <input
         value={id.profile?.gender_identity}
         onChange={handleChange}
-        id="gender-identity"
-        name="genderIdentity"
+        id="gender_identity"
+        name="gender_identity"
         type="text"
         placeholder=""
         autoComplete="off"
@@ -106,9 +111,10 @@ const UpdateProfile = (props) => {
         <br />
         Sun Sign:
         <select
-        name="sunSign"
+        name="sun_sign"
         onChange={handleChange}
         placeholder=""
+        id="sun_sign"
         >
           <option value="Ari">Aries</option>
           <option value="Tau">Taurus</option>
@@ -126,8 +132,9 @@ const UpdateProfile = (props) => {
         <br />
         Moon Sign:
         <select
-        name="sunSign"
+        name="moon_sign"
         onChange={handleChange}
+        id="moon_sign"
         placeholder=""
         >
           <option value="Ari">Aries</option>
@@ -146,8 +153,9 @@ const UpdateProfile = (props) => {
         <br />
         Rising Sign:
         <select
-        name="sunSign"
+        name="rising_sign"
         onChange={handleChange}
+        id="rising_sign"
         placeholder=""
         >
           <option value="Ari">Aries</option>
@@ -163,8 +171,8 @@ const UpdateProfile = (props) => {
           <option value="Aqu">Aquarius</option>
           <option value="Pis">Pisces</option>
         </select>
-        <br />
-        Do you smoke cigarettes?:
+        {/* <br /> */}
+        {/* Do you smoke cigarettes?:
         <input
         value={id.profile?.smoke ? "checked" : ""}
         onChange={handleChange}
@@ -190,7 +198,7 @@ const UpdateProfile = (props) => {
         name="fourTwenty"
         type="checkbox"
         />
-        <br />
+        <br /> */}
         Vibe Check! This will be seen on the the profiles page, write a quick quip to get your profile noticed!:
         <br />
         <textarea
