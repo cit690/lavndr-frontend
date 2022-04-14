@@ -19,7 +19,7 @@ import * as messageService from './services/messageService'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
-  console.log(user)
+  console.log("user is", user)
 
   const handleLogout = () => {
     authService.logout()
@@ -32,12 +32,13 @@ const App = () => {
   }
 
   const [messages, setMessages] = useState([])
-
+  console.log("messages are", messages);
+  
   const addMessage = async (messageData) => {
     const message = await messageService.create(messageData)
     setMessages([...message, message])
   }
-  console.log("message is", messages)
+
 
   return (
     <>

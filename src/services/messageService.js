@@ -26,3 +26,4 @@ export const getAll = async () => {
     throw error
   }
 }
+
