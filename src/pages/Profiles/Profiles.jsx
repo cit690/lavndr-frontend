@@ -3,7 +3,8 @@ import * as profileService from '../../services/profileService'
 import './Profiles.css'
 import ProfileCard from '../../components/ProfileCards/ProfileCards'
 
-const Profiles = () => {
+const Profiles = ({ messages }) => {
+  // console.log("profile.jsx", messages.length ? messages : "no msgs yet");
   const [profiles, setProfiles] = useState([])
 
   useEffect(()=> {
@@ -16,7 +17,8 @@ const Profiles = () => {
       <h1>Hello. This is a list of all the profiles.</h1>
 
       {profiles.map((profile)=>(
-        <ProfileCard
+        <ProfileCard 
+        messages={messages}
         profile={profile}
         key={profile.id}
         /> 

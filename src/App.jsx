@@ -23,12 +23,35 @@ import * as messageService from './services/messageService'
 
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
-
+  // usestates
+  const [user, setUser] = useState(authService.getUser())
   const [profiles, setProfiles] = useState([])
-  console.log("user is", user)
+  const [messages, setMessages] = useState([])
 
+  // * logs
+  // console.log("user is", user)
+  // console.log("profiles are", profiles);
+  // console.log( "app.jsx", messages.length ? messages : "no msgs yet");
+
+  // useEffects
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await profileService.getAllProfiles()
+      setProfiles(data)
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await messageService.getAll()
+      setMessages(data)
+    }
+    fetchData()
+  }, [])
+
+  // functions 
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -40,27 +63,11 @@ const App = () => {
     navigate('/profiles')
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await profileService.getAllProfiles()
-      setProfiles(data)
-    }
-    fetchData()
-  }, [])
-
   const updateProfile = async (profileData) => {
     const updatedProfile = await profileService.update(profileData)
     setProfiles(profiles.map((profile) => (
       profile.id === updatedProfile.id ? updatedProfile : profile
     )))
-  }
-  
-  const [messages, setMessages] = useState([])
-  console.log("messages are", messages);
-  
-  const addMessage = async (messageData) => {
-    const message = await messageService.create(messageData)
-    setMessages([...message, message])
   }
 
   const deleteProfile = async (id) => {
@@ -68,6 +75,11 @@ const App = () => {
     setProfiles(profiles.filter(profile => profile.id !== parseInt(id)))
     setUser(null)
     navigate('/')
+  }
+
+  const addMessage = async (messageData) => {
+    const message = await messageService.create(messageData)
+    setMessages([...message, message])
   }
 
   return (
@@ -87,23 +99,23 @@ const App = () => {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-            <Profiles /> 
+              <Profiles messages={messages} />
             </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id"
           element={
             <ProtectedRoute user={user}>
-            <ProfileDetails /> 
+              <ProfileDetails />
             </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id/edit"
           element={
             <ProtectedRoute user={user}>
-            <UpdateProfile updateProfile={updateProfile} /> 
+              <UpdateProfile updateProfile={updateProfile} />
             </ProtectedRoute>
-            }
+          }
         />
         <Route
           path="/profiles/:id/delete"
@@ -117,9 +129,9 @@ const App = () => {
           path="/messages"
           element={
             <ProtectedRoute user={user}>
-            <SendMessage addMessage={addMessage}/> 
+              <SendMessage addMessage={addMessage} />
             </ProtectedRoute>
-            }
+          }
         />
       </Routes>
     </>

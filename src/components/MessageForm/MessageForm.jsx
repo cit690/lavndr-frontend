@@ -1,28 +1,36 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import './MessageForm.css'
 
-const MessageForm = props => {
+// props 
+//addMessage
+// user / id
+
+const MessageForm = ({ addMessage }) => {
+  const { id } = useParams()
   const [msgContent, setMsgContent] = useState ({
     content: "",
-    recipient_id: "",
     sent_at: new Date(),
   })
-
+  
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
-
+  
   const handleTxtChange = event => {
     setMsgContent({ ...msgContent, content: event.target.value });
   };
-
+  
   const handleSubmit = event => {
     event.preventDefault();
-    props.addMessage(msgContent);
+    const recipientId = parseInt(event.target.id)
+    addMessage(msgContent, recipientId);
     if (msgContent.content) {
       setValid(true);
     }
     setSubmitted(true);
   };
+
+  console.log("id is", id);
 
   return (
     <>
@@ -37,8 +45,7 @@ const MessageForm = props => {
             placeholder="Message..."
             name="text"/>
           <button 
-          // className="review-form-btn" 
-          type="submit">Send</button>
+          type="submit">SEND</button>
         </form>
       </div>
     </>
