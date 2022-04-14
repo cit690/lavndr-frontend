@@ -18,16 +18,42 @@ import SendMessage from './pages/SendMessage/SendMessage'
 import * as authService from './services/authService'
 import * as profileService from './services/profileService'
 import * as messageService from './services/messageService'
-import MessageForm from './components/MessageForm/MessageForm.jsx'
 
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
-
+  // usestates
+  const [user, setUser] = useState(authService.getUser())
   const [profiles, setProfiles] = useState([])
-  console.log("user is", user)
+  const [messages, setMessages] = useState([])
 
+  // * logs
+  console.log("user is", user)
+  console.log("profiles are", profiles);
+  console.log("messages are", messages);
+
+  // useEffects
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await profileService.getAllProfiles()
+      setProfiles(data)
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await messageService.getAll()
+      console.log("data 1", data);
+      console.log("get all msgs use effect");
+      setMessages(data)
+      console.log("set msgs to msg data");
+      console.log("data 2", data);
+    }
+    fetchData()
+  }, [])
+
+  // functions 
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -39,32 +65,21 @@ const App = () => {
     navigate('/profiles/:id')
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await profileService.getAllProfiles()
-      setProfiles(data)
-    }
-    fetchData()
-  }, [])
-
   const updateProfile = async (profileData) => {
     const updatedProfile = await profileService.update(profileData)
     setProfiles(profiles.map((profile) => (
       profile.id === updatedProfile.id ? updatedProfile : profile
     )))
   }
-  
-  const [messages, setMessages] = useState([])
-  console.log("messages are", messages);
-  
-  const addMessage = async (messageData) => {
-    const message = await messageService.create(messageData)
-    setMessages([...message, message])
-  }
 
   const deleteProfile = async (id) => {
     await profileService.deleteOne(id)
     setProfiles(profiles.filter(profile => profile.id !== parseInt(id)))
+  }
+
+  const addMessage = async (messageData) => {
+    const message = await messageService.create(messageData)
+    setMessages([...message, message])
   }
 
   return (
@@ -84,31 +99,31 @@ const App = () => {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-            <Profiles /> 
+              <Profiles />
             </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id"
           element={
             <ProtectedRoute user={user}>
-            <ProfileDetails /> 
+              <ProfileDetails />
             </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id/edit"
           element={
             <ProtectedRoute user={user}>
-            <UpdateProfile updateProfile={updateProfile} /> 
+              <UpdateProfile updateProfile={updateProfile} />
             </ProtectedRoute>
-            }
+          }
         />
         <Route
           path="/messages"
           element={
             <ProtectedRoute user={user}>
-            <SendMessage addMessage={addMessage}/> 
+              <SendMessage addMessage={addMessage} />
             </ProtectedRoute>
-            }
+          }
         />
       </Routes>
     </>
