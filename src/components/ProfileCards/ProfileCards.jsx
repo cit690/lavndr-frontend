@@ -10,8 +10,13 @@ const ProfileCard = (profile) => {
       <h2>{profile.profile?.name}</h2>
       </Link>
       <p>{profile.profile?.vibe_check}</p>
-    </div>
-    
+      <Link to={`/messages`}>
+        <button
+        type='submit'
+        className='dm-button'
+        >Send {profile.profile?.name} a message!</button>
+      </Link>
+    </div> 
     
   </> );
 }
