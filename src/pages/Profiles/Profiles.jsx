@@ -12,9 +12,7 @@ const Profiles = () => {
   }, [])
 
   return (
-    <>
-      <h1>Hello. This is a list of all the profiles.</h1>
-
+    <div className='profiles'>
       {profiles.map((profile)=>(
         <ProfileCard
         profile={profile}
@@ -22,7 +20,7 @@ const Profiles = () => {
         /> 
       ))}
 
-    </>
+  </div>
   )
 }
 
