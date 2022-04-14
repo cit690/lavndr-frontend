@@ -1,0 +1,14 @@
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cursive_logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+

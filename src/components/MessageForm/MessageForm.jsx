@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../../styles/Form.css'
+import './MessageForm.css'
 
 const MessageForm = props => {
   const [msgContent, setMsgContent] = useState ({
@@ -29,7 +29,7 @@ const MessageForm = props => {
       <div>
         <form onSubmit={handleSubmit}>
           {submitted && valid ? ( <div className="success-msg">Sent</div> ) : null}
-          {submitted && !msgContent.content ? ( <span>Add a review first. It's not that hard.</span> ) : null}
+          {submitted && !msgContent.content ? ( <span>x</span> ) : null}
           <input
             onChange={handleTxtChange}
             value={msgContent.content}

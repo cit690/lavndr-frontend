@@ -12,18 +12,21 @@ import Profiles from './pages/Profiles/Profiles'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 import UpdateProfile from './pages/UpdateProfile/UpdateProfile'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import SendMessage from './pages/SendMessage/SendMessage'
 
 // services
 import * as authService from './services/authService'
 import * as profileService from './services/profileService'
 import * as messageService from './services/messageService'
+import MessageForm from './components/MessageForm/MessageForm.jsx'
 
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
+
   const [profiles, setProfiles] = useState([])
-   console.log("user is", user)
+  console.log("user is", user)
 
   const handleLogout = () => {
     authService.logout()
@@ -96,6 +99,14 @@ const App = () => {
           element={
             <ProtectedRoute user={user}>
             <UpdateProfile updateProfile={updateProfile} /> 
+            </ProtectedRoute>
+            }
+        />
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute user={user}>
+            <SendMessage addMessage={addMessage}/> 
             </ProtectedRoute>
             }
         />

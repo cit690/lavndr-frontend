@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as profileService from '../../services/profileService'
+import './Profiles.css'
 import ProfileCard from '../../components/ProfileCards/ProfileCards'
 
 const Profiles = () => {
@@ -21,10 +22,8 @@ const Profiles = () => {
         /> 
       ))}
 
- 
-    
     </>
   )
 }
- 
+
 export default Profiles
