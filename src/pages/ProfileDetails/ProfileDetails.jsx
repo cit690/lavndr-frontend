@@ -29,19 +29,48 @@ const ProfileDetails = (props) => {
     :
     <></>
     }
+    <div className='profile-container'>
     <h2>{profileDetails.profile?.name}</h2>
-    <ul>
-      <li>{profileDetails.profile?.location}</li>
-      <li>{profileDetails.profile?.gender_identity}</li>
-      <li>{profileDetails.profile?.orientation}</li>
-      <li>{profileDetails.profile?.sun_sign}</li>
-      <li>{profileDetails.profile?.moon_sign}</li>
-      <li>{profileDetails.profile?.rising_sign}</li>
+    <div>
+      <img src="public/default_user.png" alt="" />
+    </div>
+    
+    <ul className='details-list'>
+      {profileDetails.profile?.location ?
+        <li>{profileDetails.profile?.location}</li>
+        :
+        <></>
+      }
+      {profileDetails.profile?.gender_identity ? 
+        <li>{profileDetails.profile?.gender_identity}</li>
+          :
+          <></>
+      }
+      {profileDetails.profile?.orientation ? 
+        <li>{profileDetails.profile?.orientation}</li>
+        :
+        <></>
+      }
+      {profileDetails.profile?.sun_sign ?
+        <li>{profileDetails.profile?.sun_sign}</li>
+        :
+        <></>
+      }
+      {profileDetails.profile?.moon_sign ? 
+        <li>{profileDetails.profile?.moon_sign}</li>
+      :
+        <></>
+      }
+      {profileDetails.profile?.rising_sign ?
+        <li>{profileDetails.profile?.rising_sign}</li>
+        :
+        <></>
+      }
     </ul>
     <p>
     {profileDetails.profile?.bio}
     </p>
-    
+    </div>
   </> );
 }
  
