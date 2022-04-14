@@ -17,14 +17,16 @@ const Profiles = () => {
         <div className='profiles'>
           {profiles.map(profile=>
             <p key={profile._id}>{profile.name} 
+            <form method='get' action='/messages'>
             <button 
+            to="/profiles"
             type='submit'
             className="dm-button"
-            >Send DM</button></p>
+            >Send DM</button></form></p>
             )}
         </div>
       :
-        <p>No profiles yet</p>
+        <p>...loading</p>
       }
     </>
   )
