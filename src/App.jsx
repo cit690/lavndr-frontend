@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -13,12 +13,13 @@ import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 import UpdateProfile from './pages/UpdateProfile/UpdateProfile'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import SendMessage from './pages/SendMessage/SendMessage'
+import DeleteProfile from './pages/DeleteProfile/DeleteProfile'
 
 // services
 import * as authService from './services/authService'
 import * as profileService from './services/profileService'
 import * as messageService from './services/messageService'
-import MessageForm from './components/MessageForm/MessageForm.jsx'
+// import MessageForm from './components/MessageForm/MessageForm.jsx'
 
 
 const App = () => {
@@ -36,7 +37,7 @@ const App = () => {
 
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
-    navigate('/profiles/:id')
+    navigate('/profiles')
   }
 
   useEffect(() => {
@@ -65,6 +66,8 @@ const App = () => {
   const deleteProfile = async (id) => {
     await profileService.deleteOne(id)
     setProfiles(profiles.filter(profile => profile.id !== parseInt(id)))
+    setUser(null)
+    navigate('/')
   }
 
   return (
@@ -99,6 +102,14 @@ const App = () => {
           element={
             <ProtectedRoute user={user}>
             <UpdateProfile updateProfile={updateProfile} /> 
+            </ProtectedRoute>
+            }
+        />
+        <Route
+          path="/profiles/:id/delete"
+          element={
+            <ProtectedRoute user={user}>
+            <DeleteProfile deleteProfile={deleteProfile} handleLogout={handleLogout}/> 
             </ProtectedRoute>
             }
         />
