@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 
 // components
@@ -10,16 +10,20 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
+import UpdateProfile from './pages/UpdateProfile/UpdateProfile'
 
 // services
 import * as authService from './services/authService'
+import * as profileService from './services/profileService'
 import * as profileService from './services/authService'
 import * as messageService from './services/messageService'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
-  console.log("user is", user)
+  const [profiles, setProfiles] = useState([])
+   console.log("user is", user)
 
   const handleLogout = () => {
     authService.logout()
@@ -31,6 +35,21 @@ const App = () => {
     setUser(authService.getUser())
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await profileService.getAllProfiles()
+      setProfiles(data)
+    }
+    fetchData()
+  }, [])
+
+  const updateProfile = async (profileData) => {
+    const updatedProfile = await profileService.update(profileData)
+    setProfiles(profiles.map((profile) => (
+      profile.id === updatedProfile.id ? updatedProfile : profile
+    )))
+  }
+  
   const [messages, setMessages] = useState([])
   console.log("messages are", messages);
   
@@ -38,7 +57,6 @@ const App = () => {
     const message = await messageService.create(messageData)
     setMessages([...message, message])
   }
-
 
   return (
     <>
@@ -60,6 +78,10 @@ const App = () => {
         <Route
           path="/profiles/:id"
           element={user ? <ProfileDetails /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/profiles/:id/edit"
+          element={user ? <UpdateProfile updateProfile={updateProfile} /> : <Navigate to="/login" />}
         />
       </Routes>
     </>
