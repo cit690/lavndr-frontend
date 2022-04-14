@@ -14,7 +14,7 @@ import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 // services
 import * as authService from './services/authService'
 import * as profileService from './services/authService'
-// import * as messageService from '../services/messageService'
+import * as messageService from './services/messageService'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -31,13 +31,13 @@ const App = () => {
     setUser(authService.getUser())
   }
 
-  // const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState([])
 
-  // const addMessage = async (messageData) => {
-  //   const message = await messageService.create(messageData)
-  //   setMessages([...message, message])
-  // }
-  // console.log("message is", messages)
+  const addMessage = async (messageData) => {
+    const message = await messageService.create(messageData)
+    setMessages([...message, message])
+  }
+  console.log("message is", messages)
 
   return (
     <>
