@@ -21,6 +21,7 @@ export const getOne = async (id) => {
 }
 
 export const update = async (profile) => {
+  console.log(profile)
   try {
     const res = await fetch(`${BASE_URL}/${profile.id}`, {
       method: 'PUT',
