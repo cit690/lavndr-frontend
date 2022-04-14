@@ -6,12 +6,12 @@ import * as authService from '../../services/authService'
 const ProfileDetails = (props) => {
   const [profileDetails, setProfileDetails] = useState({})
   const params = useParams()
-  const [user, setUser] = useState(authService.getUser())
+  const [user] = useState(authService.getUser())
 
   useEffect(()=>{
     getOne(params.id)
     .then(profileDetails => setProfileDetails(profileDetails))
-  },[])
+  })
 
 
   return ( <>
