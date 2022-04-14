@@ -1,7 +1,15 @@
+
+
 .content-container{
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+  background-color: white;
+  max-width: 250px;
+  padding: 25px 25px 25px 25px;
+  margin: 25px 25px 25px 25px;
+  border-radius: 20px 20px;
+  border: solid black
 }
