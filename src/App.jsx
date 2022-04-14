@@ -79,7 +79,10 @@ const App = () => {
         />
         <Route
           path="/profiles"
-          element={user ? <Profiles /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute user={user}>
+            <Profiles /> 
+            </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id"

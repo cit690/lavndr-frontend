@@ -30,23 +30,17 @@ const UpdateProfile = (props) => {
         location: data.profile.location,
         gender_identity: data.profile.gender_identity,
         orientation: data.profile.orientation,
-        vibeCheck: data.profile.vibe_check,
+        vibe_check: data.profile.vibe_check,
         sun_sign: data.profile.sun_sign,
         moon_sign: data.profile.moon_sign,
         rising_sign: data.profile.rising_sign,
-        // smoke: data.profile.smoke,
-        // drink: data.profile.drink,
-        // fourTwenty: data.profile.four_twenty,
-        // isSober: false,
         bio: data.profile.bio
       })
-    console.log(data.profile)
-
     }
     id && fetchOne()
     return () => setForm({})
   }, [id])
-  console.log(form)
+
 
 
   return ( <>
@@ -177,7 +171,7 @@ const UpdateProfile = (props) => {
         value={id.profile?.vibe_check}
         onChange={handleChange}
         id="vibe-check"
-        name="vibeCheck"
+        name="vibe_check"
         type="text"
         placeholder="max 100 characters"
         autoComplete="off"
