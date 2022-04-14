@@ -11,11 +11,15 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 import UpdateProfile from './pages/UpdateProfile/UpdateProfile'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import SendMessage from './pages/SendMessage/SendMessage'
 
 // services
 import * as authService from './services/authService'
-import * as messageService from './services/messageService'
 import * as profileService from './services/profileService'
+import * as messageService from './services/messageService'
+import MessageForm from './components/MessageForm/MessageForm.jsx'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -32,16 +36,8 @@ const App = () => {
 
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
+    navigate('/profiles/:id')
   }
-
-  const [messages, setMessages] = useState([])
-  console.log("messages are", messages);
-  
-  const addMessage = async (messageData) => {
-    const message = await messageService.create(messageData)
-    setMessages([...message, message])
-  }
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +52,19 @@ const App = () => {
     setProfiles(profiles.map((profile) => (
       profile.id === updatedProfile.id ? updatedProfile : profile
     )))
+  }
+  
+  const [messages, setMessages] = useState([])
+  console.log("messages are", messages);
+  
+  const addMessage = async (messageData) => {
+    const message = await messageService.create(messageData)
+    setMessages([...message, message])
+  }
+
+  const deleteProfile = async (id) => {
+    await profileService.deleteOne(id)
+    setProfiles(profiles.filter(profile => profile.id !== parseInt(id)))
   }
 
   return (
@@ -77,11 +86,26 @@ const App = () => {
         />
         <Route
           path="/profiles/:id"
-          element={user ? <ProfileDetails /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute user={user}>
+            <ProfileDetails /> 
+            </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id/edit"
-          element={user ? <UpdateProfile updateProfile={updateProfile} /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute user={user}>
+            <UpdateProfile updateProfile={updateProfile} /> 
+            </ProtectedRoute>
+            }
+        />
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute user={user}>
+            <SendMessage addMessage={addMessage}/> 
+            </ProtectedRoute>
+            }
         />
       </Routes>
     </>
