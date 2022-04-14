@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { getOne }from '../../services/profileService'
 import * as authService from '../../services/authService'
-import { Link } from 'react-router-dom'
 
 const ProfileDetails = (props) => {
   const [profileDetails, setProfileDetails] = useState({})
@@ -13,10 +12,23 @@ const ProfileDetails = (props) => {
     getOne(params.id)
     .then(profileDetails => setProfileDetails(profileDetails))
   },[])
-  console.log(profileDetails)
+
 
   return ( <>
 
+    {user.id === profileDetails.profile?.id ?
+
+    <header className='profile-header'>
+    <Link to={`/profiles/${profileDetails.profile?.id}/edit`}>
+      <button>Edit Profile</button>
+    </Link>
+    <Link to={`/profiles/${profileDetails.profile?.id}/delete`}>
+      <button>Delete Profile</button>
+    </Link>
+    </header>
+    :
+    <></>
+    }
     <h2>{profileDetails.profile?.name}</h2>
     <ul>
       <li>{profileDetails.profile?.location}</li>
