@@ -37,8 +37,7 @@ const MessageForm = props => {
             placeholder="Message..."
             name="text"/>
           <button 
-          // className="review-form-btn" 
-          type="submit">Send</button>
+          type="submit">SEND</button>
         </form>
       </div>
     </>
