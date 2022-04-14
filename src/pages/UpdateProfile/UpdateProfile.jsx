@@ -171,34 +171,6 @@ const UpdateProfile = (props) => {
           <option value="Aqu">Aquarius</option>
           <option value="Pis">Pisces</option>
         </select>
-        {/* <br /> */}
-        {/* Do you smoke cigarettes?:
-        <input
-        value={id.profile?.smoke ? "checked" : ""}
-        onChange={handleChange}
-        id="smoke"
-        name="smoke"
-        type="checkbox"
-        />
-        <br />
-        Do you drink?:
-        <input
-        value={id.profile?.smoke ? "checked" : ""}
-        onChange={handleChange}
-        id="drink"
-        name="drink"
-        type="checkbox"
-        />
-        <br />
-        Do you smoke cannabis?:
-        <input
-        value={id.profile?.four_twenty ? "checked" : ""}
-        onChange={handleChange}
-        id="four-twenty"
-        name="fourTwenty"
-        type="checkbox"
-        />
-        <br /> */}
         Vibe Check! This will be seen on the the profiles page, write a quick quip to get your profile noticed!:
         <br />
         <textarea

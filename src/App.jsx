@@ -9,6 +9,8 @@ import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 import * as authService from './services/authService'
 import * as profileService from './services/profileService'
 import UpdateProfile from './pages/UpdateProfile/UpdateProfile'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -24,6 +26,7 @@ const App = () => {
 
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
+    navigate('/profiles/:id')
   }
 
   useEffect(() => {
@@ -39,6 +42,11 @@ const App = () => {
     setProfiles(profiles.map((profile) => (
       profile.id === updatedProfile.id ? updatedProfile : profile
     )))
+  }
+
+  const deleteProfile = async (id) => {
+    await profileService.deleteOne(id)
+    setProfiles(profiles.filter(profile => profile.id !== parseInt(id)))
   }
 
   return (
@@ -60,11 +68,18 @@ const App = () => {
         />
         <Route
           path="/profiles/:id"
-          element={user ? <ProfileDetails /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute user={user}>
+            <ProfileDetails /> 
+            </ProtectedRoute>}
         />
         <Route
           path="/profiles/:id/edit"
-          element={user ? <UpdateProfile updateProfile={updateProfile} /> : <Navigate to="/login" />}
+          element={
+            <ProtectedRoute user={user}>
+            <UpdateProfile updateProfile={updateProfile} /> 
+            </ProtectedRoute>
+            }
         />
       </Routes>
     </>
