@@ -4,23 +4,25 @@ import './MessageForm.css'
 
 const MessageForm = ({ addMessage }) => {
   const { id } = useParams()
-  const [msgContent, setMsgContent] = useState ({
+  const [msgContent, setMsgContent] = useState({
     content: "",
     sent_at: new Date(),
   })
-  
+
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
-  
+
   const handleTxtChange = event => {
     setMsgContent({ ...msgContent, content: event.target.value });
   };
-  
+
   const handleSubmit = event => {
     event.preventDefault();
     addMessage(msgContent, id);
+    // refresh page
+    window.location.reload()
     if (msgContent.content) {
-      setValid(true);
+      setValid(true)
     }
     setSubmitted(true);
   };
@@ -29,17 +31,17 @@ const MessageForm = ({ addMessage }) => {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          {submitted && valid ? ( <div className="success-msg">Sent</div> ) : null}
-          {submitted && !msgContent.content ? ( <span>x</span> ) : null}
+          {submitted && valid ? (<div className="success-msg">Sent</div>) : null}
+          {submitted && !msgContent.content ? (<span>x</span>) : null}
           <input
             onChange={handleTxtChange}
             value={msgContent.content}
             type="text"
             placeholder="Message..."
-            name="text"/>
-          <button 
-          onSubmit={addMessage}
-          type="submit">SEND</button>
+            name="text" />
+          <button
+            onSubmit={addMessage}
+            type="submit">SEND</button>
         </form>
       </div>
     </>

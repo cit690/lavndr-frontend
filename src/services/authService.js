@@ -36,7 +36,7 @@ async function login(credentials) {
       body: JSON.stringify(credentials),
     })
     const json = await res.json()
-    console.log(json)
+    // console.log(json)
     if (json.token) {
       tokenService.setToken(json.token)
     }
@@ -47,6 +47,5 @@ async function login(credentials) {
     throw err
   }
 }
-
 
 export { signup, getUser, logout, login }

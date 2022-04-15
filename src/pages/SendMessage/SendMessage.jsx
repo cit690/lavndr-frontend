@@ -19,7 +19,6 @@ const SendMessage = ({ user, profiles, addMessage }) => {
     find(id)
   }, [profiles, id])
 
-
   if (recipient === "") {
     return (
       <div>
