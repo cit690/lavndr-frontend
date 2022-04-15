@@ -18,7 +18,7 @@ const MessageForm = ({ addMessage }) => {
   
   const handleSubmit = event => {
     event.preventDefault();
-    addMessage(msgContent);
+    addMessage(msgContent, id);
     if (msgContent.content) {
       setValid(true);
     }

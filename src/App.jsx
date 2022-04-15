@@ -19,7 +19,6 @@ import DeleteProfile from './pages/DeleteProfile/DeleteProfile'
 import * as authService from './services/authService'
 import * as profileService from './services/profileService'
 import * as messageService from './services/messageService'
-// import MessageForm from './components/MessageForm/MessageForm.jsx'
 
 
 const App = () => {
@@ -28,11 +27,6 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [profiles, setProfiles] = useState([])
   const [messages, setMessages] = useState([])
-
-  // * logs
-  // console.log("user is", user)
-  // console.log("profiles are", profiles);
-  // console.log( "app.jsx", messages.length ? messages : "no msgs yet");
 
   // useEffects
   useEffect(() => {
@@ -77,8 +71,8 @@ const App = () => {
     navigate('/')
   }
 
-  const addMessage = async (messageData) => {
-    const message = await messageService.create(messageData)
+  const addMessage = async (messageData, id) => {
+    const message = await messageService.create(messageData, id)
     setMessages([...message, message])
   }
 
@@ -128,9 +122,9 @@ const App = () => {
         <Route
           path="/messages/:id"
           element={
-              <SendMessage profiles={profiles} addMessage={addMessage} />
-            // <ProtectedRoute user={user}>
-            // </ProtectedRoute>
+            <ProtectedRoute user={user}>
+              <SendMessage profiles={profiles} addMessage={addMessage} messages={messages} />
+            </ProtectedRoute>
           }
         />
       </Routes>
