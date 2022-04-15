@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getOne }from '../../services/profileService'
 import * as authService from '../../services/authService'
+import './ProfileDetails.css'
 
 const ProfileDetails = (props) => {
   const [profileDetails, setProfileDetails] = useState({})

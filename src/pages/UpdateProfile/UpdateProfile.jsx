@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getOne } from '../../services/profileService'
-// import { update } from '../../services/profileService'
+import './UpdateProfile.css'
 
 const UpdateProfile = (props) => {
   const { id } = useParams()
@@ -43,6 +43,7 @@ const UpdateProfile = (props) => {
 
 
   return ( <>
+    <div className='page'>
     <h2>Update Your Profile!</h2>
 
     <section className='form-container'>
@@ -164,6 +165,7 @@ const UpdateProfile = (props) => {
           <option value="Aqu">Aquarius</option>
           <option value="Pis">Pisces</option>
         </select>
+        <br />
         Vibe Check! This will be seen on the the profiles page, write a quick quip to get your profile noticed!:
         <br />
         <textarea
@@ -191,7 +193,7 @@ const UpdateProfile = (props) => {
         <button type="submit" className="btn submit">Submit!</button>
       </form>
     </section>
-
+    </div>
   </> );
 }
  

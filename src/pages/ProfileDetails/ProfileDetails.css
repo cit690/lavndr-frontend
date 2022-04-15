@@ -1,0 +1,10 @@
+.profile-header{
+  float: right;
+}
+
+.profile-container{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
