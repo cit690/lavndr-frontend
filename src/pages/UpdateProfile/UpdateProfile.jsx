@@ -42,7 +42,6 @@ const UpdateProfile = (props) => {
   }, [id])
 
 
-
   return ( <>
     <h2>Update Your Profile!</h2>
 

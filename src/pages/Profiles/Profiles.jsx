@@ -21,7 +21,6 @@ const Profiles = ({ messages }) => {
         key={profile.id}
         /> 
       ))}
-
   </div>
   )
 }
