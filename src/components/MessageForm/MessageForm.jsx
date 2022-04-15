@@ -2,10 +2,6 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './MessageForm.css'
 
-// props 
-//addMessage
-// user / id
-
 const MessageForm = ({ addMessage }) => {
   const { id } = useParams()
   const [msgContent, setMsgContent] = useState ({
@@ -22,15 +18,12 @@ const MessageForm = ({ addMessage }) => {
   
   const handleSubmit = event => {
     event.preventDefault();
-    const recipientId = parseInt(event.target.id)
-    addMessage(msgContent, recipientId);
+    addMessage(msgContent);
     if (msgContent.content) {
       setValid(true);
     }
     setSubmitted(true);
   };
-
-  console.log("id is", id);
 
   return (
     <>
@@ -45,6 +38,7 @@ const MessageForm = ({ addMessage }) => {
             placeholder="Message..."
             name="text"/>
           <button 
+          onSubmit={addMessage}
           type="submit">SEND</button>
         </form>
       </div>

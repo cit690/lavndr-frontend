@@ -1,12 +1,10 @@
 import MessageForm from "../../components/MessageForm/MessageForm";
 import './SendMessage.css'
 
-const SendMessage = (props) => {
+const SendMessage = ({ profiles, addMessage }) => {
   return ( 
     <>
-    <h1> DMS Between (sender profile) and (recipiiant profile) </h1>
-
-    <MessageForm />
+    <MessageForm addMessage={addMessage} />
     </>
   );
 }

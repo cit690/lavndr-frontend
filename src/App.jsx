@@ -126,11 +126,11 @@ const App = () => {
             }
         />
         <Route
-          path="/messages"
+          path="/messages/:id"
           element={
-            <ProtectedRoute user={user}>
-              <SendMessage addMessage={addMessage} />
-            </ProtectedRoute>
+              <SendMessage profiles={profiles} addMessage={addMessage} />
+            // <ProtectedRoute user={user}>
+            // </ProtectedRoute>
           }
         />
       </Routes>

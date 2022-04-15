@@ -1,5 +1,5 @@
 import * as tokenService from '../services/tokenService'
-const BASE_URL = `${process.env.REACT_APP_API_URL}/api/messages`
+const BASE_URL = `${process.env.REACT_APP_API_URL}/api/messages/`
 
 export const getAll = async () => {
   try {
@@ -19,7 +19,7 @@ export const getAll = async () => {
 export const getOne = async (id) => {
   console.log("get one msg service")
   try {
-    const res = await fetch(`${BASE_URL}${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "GET",
       headers: {
         'content-type': 'application/json',
@@ -33,7 +33,6 @@ export const getOne = async (id) => {
 }
 
 export const create = async (message) => {
-  console.log("create msg service");
   try {
     const res = await fetch(BASE_URL, {
       method: "POST",
