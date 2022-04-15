@@ -1,68 +1,33 @@
-# Flask - React JWT Auth Template - Front End
+# Lavndr
+### Created and developed by Claire Thompson and Tye Webster
+---
+Lavndr is a social networking "dating app" style of web application specifically tailored for members of the LGBTQA+ community to find platonic connections and build communities. 
 
-This is the front end of a decoupled Flask React app that includes JWT Authentication.
+Having a strong friend circle is ever so important for people under the LGBTQA+ umbrella, but it can often be hard to meet new people within one's local community if you don't know where to look. LGBTQA+ spaces often coincide with night life, i.e. bars and clubs, spaces that are often not tailored to the interests of some, or totally inaccessible to others. That is why we wanted to create this app, so LGBTQA+ individuals can build connections from the comfort and safety of their own spaces. 
 
-When combined with the back end found [here](https://github.com/SEI-Remote/flask-api-auth-template), you'll have all you need to build a full stack Flask React app!
+The name Lavndr comes from the lavender flower which has commonly been used as a symbol for homosexuality since the 1950's. Although lavender was initially something associated with shame and persecution of homosexuals, it has since been reclaimed by the community.
 
-Use this to go build things! 🚀
+---
+<img src="https://i.imgur.com/xd7GsOX.png">
+<img src="https://i.imgur.com/8B5PkFF.png">
 
-## To Use This Template
+---
+## Technology Used
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
-**Replace `<name-of-your-app-here>` in the commands below with the name of your app!**
+---
+## Icebox
 
-```bash
-git clone https://github.com/SEI-Remote/flask-react-jwt-auth-template-frontend.git <name-of-your-app-here>
-cd <name-of-your-app-here>-front-end
-```
-
-Once you are in the project directory:
-
-```bash
-rm -rf .git
-```
-
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
-
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
-
-Re-initialize a git repository:
-
-```bash
-git init
-```
-
-Use the GitHub CLI to create a new project repository on GitHub:
-
-```bash
-gh repo create <name-of-your-app-here>-front-end
-```
-
-Run `npm i` to fetch the template's dependencies:
-
-```bash
-npm i
-```
-
-touch a `.env` file:
-
-```bash
-touch .env
-```
-
-Fill it with the following:
-
-```
-REACT_APP_API_URL=http://127.0.0.1:5000
-```
-
-> 🚨 DO NOT place secrets in this `.env` file. The contents of this file WILL be exposed to site visitors.
-
-Delete this README.md, then make an initial commit:
-
-```bash
-git add .
-git commit -m "initial commit"
-git push -u origin main
-```
-
-You're done!
+- Add photo uploads
+- Implement web sockets for instant messaging
+- Add a "like" feature
+- Design to be more mobile forward

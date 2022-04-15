@@ -2,17 +2,14 @@ import './Landing.css'
 
 const Landing = ({ user }) => {
   return (
-    <>
-    {/* <main 
-    className='container'>
-      <h1>Hey {user ? user.name : 'friend'}! </h1>
-    </main> */}
+    <div className='container'>
+    <h1>Lavndr</h1>
     <img 
-    src="../lavndr_text.png"
+    src="../favicon.png"
     alt="The Lavndr Text Logo in Cursive"
     className='cursive_logo'
     />
-    </>
+    </div>
   )
 }
 

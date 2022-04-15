@@ -7,9 +7,12 @@
   align-items: center;
   margin-bottom: 50px;
   background-color: white;
-  max-width: 250px;
+  width: 300px;
+  max-width: 350px;
   padding: 25px 25px 25px 25px;
   margin: 25px 25px 25px 25px;
   border-radius: 20px 20px;
-  border: solid black
+  border: solid #ddd8f0 5px;
+  color:#4e435e;
+  font-weight: bolder;
 }
