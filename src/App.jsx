@@ -123,7 +123,7 @@ const App = () => {
           path="/messages/:id"
           element={
             <ProtectedRoute user={user}>
-              <SendMessage profiles={profiles} addMessage={addMessage} messages={messages} />
+              <SendMessage profiles={profiles} addMessage={addMessage} messages={messages} user={user} />
             </ProtectedRoute>
           }
         />
