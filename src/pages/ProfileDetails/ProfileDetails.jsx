@@ -33,7 +33,7 @@ const ProfileDetails = (props) => {
     <div className='profile-container'>
     <h2>{profileDetails.profile?.name}</h2>
     <div>
-      <img src="public/default_user.png" alt="" />
+      <img src="../default_user.png" alt="" />
     </div>
     
     <ul className='details-list'>
